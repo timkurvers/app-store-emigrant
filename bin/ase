@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
 require 'app-store-emigrant'
-require 'app-store-emigrant/cli'
 
 AppStore::Emigrant::CLI.new ARGV
