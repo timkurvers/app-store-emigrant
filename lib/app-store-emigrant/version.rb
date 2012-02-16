@@ -1,10 +1,8 @@
 
-module AppStore
+module AppStore; end
+
+module AppStore::Emigrant
   
-  module Emigrant
-  
-    VERSION = '0.0.1'
-  
-  end
+  VERSION = '0.0.1'
 
 end

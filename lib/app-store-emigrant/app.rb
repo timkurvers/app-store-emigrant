@@ -1,15 +1,11 @@
 
-module AppStore
-  
-  module Emigrant
+module AppStore; end
+
+module AppStore::Emigrant
     
-    class App
-      
-      def initialize path
-        
-        
-        
-      end
+  class App
+    
+    def initialize path
       
     end
     
