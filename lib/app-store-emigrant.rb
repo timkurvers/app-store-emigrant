@@ -1,10 +1,11 @@
 
-require 'app-store-emigrant/version'
+module AppStore; end
 
-module AppStore
+module AppStore::Emigrant
   
-  module Emigrant
-    
-  end
+  autoload :App,      'app-store-emigrant/app'
+  autoload :CLI,      'app-store-emigrant/cli'
+  autoload :Library,  'app-store-emigrant/library'
+  autoload :VERSION,  'app-store-emigrant/version'    
   
 end
