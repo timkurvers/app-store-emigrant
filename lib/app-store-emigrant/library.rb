@@ -1,19 +1,28 @@
 
-module AppStore
-  
-  module Emigrant
+require 'pathname'
+
+module AppStore; end
+
+module AppStore::Emigrant
     
-    class Library
+  class Library
+    
+    attr_reader :path, :apps
+    
+    def initialize path
       
-      attr_reader :apps
+      @path = Pathname.new path
+      @path = @path.expand_path unless @path.absolute?
       
-      def initialize path
-        
-        @apps = []
-        
+      unless @path.directory?
+        raise Library::DoesNotExist, "Given path is not a valid library directory: #{@path}"
       end
       
+      @apps = []
+      
     end
+    
+    class DoesNotExist < StandardError; end
     
   end
   
