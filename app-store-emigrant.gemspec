@@ -20,6 +20,10 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ['lib']
   
+  s.add_dependency 'rubyzip',        '~> 0.9.5'
+  s.add_dependency 'rainbow',        '~> 1.1.3'
+  s.add_dependency 'CFPropertyList', '~> 2.0.17'
+  
   s.add_development_dependency 'rake'
 
 end
