@@ -31,7 +31,7 @@ module AppStore::Emigrant
       @apps
     end
     
-    # Force-loads applications from disk
+    # Forcefully loads applications from disk
     def load!
       @apps = []
       @path.each_child do |item|
