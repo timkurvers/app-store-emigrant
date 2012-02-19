@@ -47,7 +47,7 @@ module AppStore::Emigrant
     # Searches for applications containing given snippet in filename
     def find snippet
       apps.select do |app|
-        app.filename.include? name
+        app.filename.include? snippet
       end
     end
     
