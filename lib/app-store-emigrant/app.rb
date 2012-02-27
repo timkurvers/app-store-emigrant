@@ -1,6 +1,7 @@
 require 'cfpropertylist'
 require 'json'
 require 'net/http'
+require 'pathname'
 require 'zip/zip'
 require 'zip/zipfilesystem'
 
@@ -32,7 +33,9 @@ module AppStore::Emigrant
       end
       
       # Ensure application has valid extension
-      raise Invalid unless VALID_EXTENSIONS.include? @path.extname
+      unless VALID_EXTENSIONS.include? @path.extname
+        raise Invalid, "Given application does not have a valid extension: #{@path}"
+      end
       
       @metadata = nil
       @clouddata = nil
@@ -72,10 +75,14 @@ module AppStore::Emigrant
     # Lazily loads local metadata for this application from its iTunesMetadata.plist
     def metadata
       unless @metadata
-        Zip::ZipFile.open(@path) do |zip|
-          data = zip.file.read('iTunesMetadata.plist')
-          plist = CFPropertyList::List.new(data: data)
-          @metadata = CFPropertyList.native_types(plist.value)
+        begin
+          Zip::ZipFile.open(@path) do |zip|
+            data = zip.file.read('iTunesMetadata.plist')
+            plist = CFPropertyList::List.new(data: data)
+            @metadata = CFPropertyList.native_types(plist.value)
+          end
+        rescue Zip::ZipError => e
+          raise Invalid, e.message
         end
       end
       
