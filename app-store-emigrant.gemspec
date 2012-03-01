@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = AppStore::Emigrant::VERSION
   s.authors     = ['Tim Kurvers']
   s.email       = ['tim@moonsphere.net']
-  s.homepage    = 'http://moonsphere.net'
+  s.homepage    = 'https://github.com/timkurvers/app-store-emigrant'
   s.summary     = 'App Store Emigrant will manually attempt to verify whether any of your local mobile applications are out of date'
-  s.description = 'Moved countries and now iTunes refuses to notify you properly with updates? Rest assured, using App Store Emigrant you know exactly which apps are outdated'
+  s.description = 'App Store Emigrant will manually attempt to verify whether any of your local mobile applications are out of date, which iTunes - unfortunately - will refuse once you have moved countries'
   
   s.rubyforge_project = 'app-store-emigrant'
 
@@ -25,5 +25,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'CFPropertyList', '~> 2.0.17'
   
   s.add_development_dependency 'rake'
+  s.add_development_dependency 'minitest'
 
 end
