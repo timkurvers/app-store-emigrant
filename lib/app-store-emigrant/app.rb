@@ -18,7 +18,7 @@ module AppStore::Emigrant
     ]
     
     # Regular expression to match a version number in filenames
-    FILENAME_VERSION_REGEX = Regexp.new('(?<version>[0-9.]+)(?:' + VALID_EXTENSIONS.join('|') + ')')
+    FILENAME_VERSION_REGEX = Regexp.new('([0-9.]+)(?:' + VALID_EXTENSIONS.join('|').gsub!('.', '\.') + ')')
     
     attr_reader :path
     
@@ -64,7 +64,7 @@ module AppStore::Emigrant
         
         # Otherwise, use the filename
         unless @version
-          @version = filename[FILENAME_VERSION_REGEX, :version]
+          @version = filename[FILENAME_VERSION_REGEX, 1]
         end
         
       end
@@ -78,7 +78,7 @@ module AppStore::Emigrant
         begin
           Zip::ZipFile.open(@path) do |zip|
             data = zip.file.read('iTunesMetadata.plist')
-            plist = CFPropertyList::List.new(data: data)
+            plist = CFPropertyList::List.new(:data => data)
             @metadata = CFPropertyList.native_types(plist.value)
           end
         rescue Zip::ZipError => e

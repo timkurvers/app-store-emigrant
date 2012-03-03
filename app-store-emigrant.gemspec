@@ -25,6 +25,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'CFPropertyList', '~> 2.0.17'
   
   s.add_development_dependency 'rake'
-  s.add_development_dependency 'minitest'
+  
+  if RUBY_VERSION < '1.9'
+    s.add_dependency 'json'
+    s.add_development_dependency 'minitest'
+  end
 
 end
