@@ -26,7 +26,7 @@ module AppStore::Emigrant
         end
         puts
         
-        sleep(1)
+        sleep(0.75)
       end
       
     end
