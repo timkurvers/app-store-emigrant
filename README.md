@@ -4,8 +4,8 @@ App Store Emigrant [![Build Status](https://secure.travis-ci.org/timkurvers/app-
 
 Copyright (c) 2012 Tim Kurvers <http://www.moonsphere.net>
 
-App Store Emigrant is a Ruby gem that will manually attempt to verify whether 
-any of your local mobile applications are out of date, which iTunes will refuse 
+App Store Emigrant is a Ruby gem that will manually attempt to verify whether  
+any of your local mobile applications are out of date, which iTunes will refuse  
 to do automatically once you have moved countries.
 
 **Suported Ruby versions: 1.8.7 or higher**
@@ -15,7 +15,7 @@ Licensed under the **MIT** license, see LICENSE for more information.
 Background
 ----------
 
-For more information on the issues faced when moving countries with regards to 
+For more information on the issues faced when moving countries with regards to  
 Apple's ecosystem please see [these](https://discussions.apple.com/thread/2443094) [discussions](https://discussions.apple.com/message/16273593).
 
 
@@ -30,12 +30,12 @@ App Store Emigrant is available from RubyGems and can be installed as follows:
 Usage
 -----
 
-Once installed, a new not-so-fantastically named binary called 'ase' will be 
+Once installed, a new not-so-fantastically named binary called 'ase' will be  
 added to your path. Invoke the binary to start the verification process:
 
     $ ase
    
-If App Store Emigrant complains that it cannot find your default library, 
+If App Store Emigrant complains that it cannot find your default library,  
 help it along and specify where your iTunes library lurks:
 
     $ ase ~/m00sic
