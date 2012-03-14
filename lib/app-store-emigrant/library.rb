@@ -52,7 +52,9 @@ module AppStore::Emigrant
     end
     
     # Returns the default library (if any) for this system
-    # See Apple's support document (http://support.apple.com/kb/ht1391) as to where libraries can be found
+    # See Apple's support documents as to where libraries can be found
+    # - http://support.apple.com/kb/ht1391
+    # - http://support.apple.com/kb/ht3847
     def self.default
       
       # Use the homedir provided through the environment
@@ -62,13 +64,23 @@ module AppStore::Emigrant
       locations = [
         
         # Mac OSX and Windows Vista
-        "#{homedir}/Music/iTunes/iTunes Media/Mobile Applications/",
+        "#{homedir}/Music/iTunes/iTunes Media/Mobile Applications",
         
         # Windows 7
-        "#{homedir}/My Music/iTunes/iTunes Media/Mobile Applications/",
+        "#{homedir}/My Music/iTunes/iTunes Media/Mobile Applications",
         
         # Windows XP
-        "#{homedir}/My Documents/My Music/iTunes/iTunes Media/Mobile Applications/"
+        "#{homedir}/My Documents/My Music/iTunes/iTunes Media/Mobile Applications",
+        
+        # Mac OSX and Windows Vista (prior to iTunes 9)
+        "#{homedir}/Music/iTunes/Mobile Applications",
+        
+        # Windows 7 (prior to iTunes 9)
+        "#{homedir}/My Music/iTunes/Mobile Applications",
+        
+        # Windows XP (prior to iTunes 9)
+        "#{homedir}/My Documents/My Music/iTunes/Mobile Applications",
+        
       ]
       
       # Raise exception if no default library could be found
