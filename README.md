@@ -36,6 +36,6 @@ added to your path. Invoke the binary to start the verification process:
     $ ase
    
 If App Store Emigrant complains that it cannot find your default library,  
-help it along and specify where your iTunes library lurks:
+help it along and specify where your mobile applications lurk:
 
     $ ase ~/m00sic

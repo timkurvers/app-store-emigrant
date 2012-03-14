@@ -16,7 +16,7 @@ module AppStore::Emigrant
       
       # Ensure library is a valid directory
       unless @path.directory?
-        raise DoesNotExist, "Given path is not a valid library directory: #{@path}"
+        raise DoesNotExist, "Given path is not a valid mobile applications library: #{@path}"
       end
       
       @apps = nil
@@ -86,7 +86,7 @@ module AppStore::Emigrant
       # Raise exception if no default library could be found
       path = Dir.glob(locations).first
       unless path
-        raise DoesNotExist, 'Could not locate default iTunes library'
+        raise DoesNotExist, 'Could not locate default iTunes mobile applications library'
       end
       
       # Return an instance of this default library
