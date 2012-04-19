@@ -18,19 +18,36 @@ Background
 For more information on the issues faced when moving countries with regards to  
 Apple's ecosystem please see [these](https://discussions.apple.com/thread/2443094) [discussions](https://discussions.apple.com/message/16273593).
 
+**TL;DR**: For reasons unknown to mankind, Apple has made it rather complicated  
+to update applications bought in different stores, particularly after emigrating.
+
+iTunes mentions updates are available, but refuses to actually update these apps  
+when asked to. These applications are also missing from the Purchases-tab.
+
+App Store Emigrant tries to soothe these pains - albeit only partially - by  
+scanning your iTunes library folder for mobile applications and querying iTunes  
+for the latest versions available. One can then manually go into the store and  
+update each application, one by one. *sigh*
+
+![App Store Emigrant](http://office.moonsphere.net/app-store-emigrant.png)
 
 Installation
 ------------
 
-App Store Emigrant is available from RubyGems and can be installed as follows:
+App Store Emigrant is available from RubyGems and can be installed through the  
+command-line. Fire up your favourite terminal and run:
 
     $ gem install app-store-emigrant
+
+Installing on **OSX** and using the **default system Ruby**? Run:
+
+    $ sudo gem install app-store-emigrant
 
 
 Usage
 -----
 
-Once installed, a new not-so-fantastically named binary called 'ase' will be  
+Once installed, a new not-so-fantastically named binary called ```ase``` will be  
 added to your path. Invoke the binary to start the verification process:
 
     $ ase
