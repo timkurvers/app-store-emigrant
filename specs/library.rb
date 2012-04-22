@@ -22,11 +22,13 @@ describe Library do
   it 'will gracefully and lazily load applications' do
     @library.instance_variable_get('@apps').must_be_nil
     @library.apps.must_be_instance_of Array
-    @library.apps.length.must_equal 2
+    @library.apps.length.must_equal 3
   end
   
-  it 'can find applications' do
+  it 'can find applications by (partial) filename' do
     @library.find('Dummy').length.must_equal 1
+    @library.find('GTA').length.must_equal 1
+    @library.find('Soosiz').length.must_equal 1
   end
   
 end
