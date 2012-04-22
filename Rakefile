@@ -6,3 +6,5 @@ Rake::TestTask.new do |t|
   t.verbose    = true
   t.libs      << 'specs'
 end
+
+task :default => :test
