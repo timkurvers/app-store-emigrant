@@ -50,9 +50,19 @@ module AppStore::Emigrant
       @filename
     end
     
-    # Name of this application (from its metadata)
+    # Unique application id
+    def id
+      metadata['itemId'] rescue nil
+    end
+    
+    # Name of this application
     def name
-      metadata['itemName']
+      metadata['itemName'] rescue nil
+    end
+    
+    # Whether this application is valid
+    def valid?
+      metadata rescue false
     end
     
     # Version of this application
@@ -60,7 +70,7 @@ module AppStore::Emigrant
       unless @version
         
         # Extract version information (if available)
-        @version = metadata['bundleShortVersionString'] || metadata['bundleVersion']
+        @version = metadata['bundleShortVersionString'] || metadata['bundleVersion'] rescue nil
         
         # Otherwise, use the filename
         unless @version
@@ -93,7 +103,7 @@ module AppStore::Emigrant
     # Note: Clouddata may be nil if the application was removed from the store
     def clouddata
       unless @clouddata
-        response = Net::HTTP.get('itunes.apple.com', '/lookup?id=' + metadata['itemId'].to_s)
+        response = Net::HTTP.get('itunes.apple.com', '/lookup?id=' + id.to_s)
         @clouddata = JSON.parse(response)['results'].first
       end
       
