@@ -32,10 +32,10 @@ describe App do
     @soosiz.filename.must_equal 'Soosiz.ipa'
   end
   
-  it 'can handle invalid structures' do
-    lambda do
-      @dummy.version
-    end.must_raise App::Invalid
+  it 'will report invalid structures' do
+    @dummy.valid?.must_equal false
+    @dummy.id.must_equal nil
+    @dummy.version.must_equal nil
   end
   
   it 'can query local metadata' do
