@@ -32,8 +32,8 @@ describe Library do
   end
   
   it 'can get applications by id' do
-    @library.get(344186162).must_equal @library.apps[1]
-    @library.get(331891505).must_equal @library.apps[2]
+    @library.get(344186162).filename.must_equal 'GTA.ipa'
+    @library.get(331891505).filename.must_equal 'Soosiz.ipa'
   end
   
 end
