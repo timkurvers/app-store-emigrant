@@ -1,3 +1,5 @@
+require 'json'
+require 'net/http'
 require 'pathname'
 
 module AppStore; end
@@ -42,6 +44,13 @@ module AppStore::Emigrant
         end
       end
       self
+    end
+    
+    # Searches for application with given id
+    def get id
+      apps.select do |app|
+        app.id == id
+      end.first
     end
     
     # Searches for applications containing given snippet in filename
