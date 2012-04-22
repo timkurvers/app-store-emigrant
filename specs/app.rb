@@ -11,7 +11,8 @@ describe App do
   
   before do
     @dummy = App.new(LIBRARY + '/Dummy.ipa')
-    @outdated = App.new(LIBRARY + '/Outdated.ipa')
+    @gta = App.new(LIBRARY + '/GTA.ipa')
+    @soosiz = App.new(LIBRARY + '/Soosiz.ipa')
   end
   
   it 'must be a valid file on disk' do
@@ -27,7 +28,8 @@ describe App do
   end
   
   it 'can determine its own filename' do
-    @dummy.filename.must_equal 'Dummy.ipa'
+    @gta.filename.must_equal 'GTA.ipa'
+    @soosiz.filename.must_equal 'Soosiz.ipa'
   end
   
   it 'can handle invalid structures' do
@@ -37,15 +39,18 @@ describe App do
   end
   
   it 'can query local metadata' do
-    @outdated.version.must_equal '0.9'
+    @gta.version.must_equal '0.9'
+    @soosiz.version.must_equal '1.1'
   end
   
-  it 'can query clouddata' do
-    @outdated.cloudversion.must_equal '1.1.0'
+  it 'can load cloud data' do
+    @gta.cloudversion.must_equal '1.1.0'
+    @soosiz.cloudversion.must_equal '1.3'
   end
   
   it 'can determine whether it is outdated' do
-    @outdated.outdated?.must_equal true
+    @gta.outdated?.must_equal true
+    @soosiz.outdated?.must_equal true
   end
   
 end
