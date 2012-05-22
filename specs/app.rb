@@ -38,6 +38,11 @@ describe App do
     @dummy.version.must_equal nil
   end
   
+  it 'can extract its name' do
+    @gta.name.must_equal 'Grand Theft Auto: Chinatown Wars'
+    @soosiz.name.must_equal 'Soosiz'
+  end
+  
   it 'can query local metadata' do
     @gta.version.must_equal '0.9'
     @soosiz.version.must_equal '1.1'
