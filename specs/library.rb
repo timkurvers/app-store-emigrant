@@ -36,4 +36,16 @@ describe Library do
     @library.get(331891505).filename.must_equal 'Soosiz.ipa'
   end
   
+  it 'can load cloud data in bulk' do
+    gta = @library.find('GTA').first
+    soosiz = @library.find('Soosiz').first
+    gta.instance_variable_get('@clouddata').must_be_nil
+    soosiz.instance_variable_get('@clouddata').must_be_nil
+    
+    @library.clouddata!
+    
+    gta.instance_variable_get('@clouddata').must_be_instance_of Hash
+    soosiz.instance_variable_get('@clouddata').must_be_instance_of Hash
+  end
+  
 end
