@@ -46,6 +46,24 @@ module AppStore::Emigrant
       self
     end
     
+    # Populates applications' cloud data in bulk
+    def clouddata!
+      
+      # Collect all application ids, skipping any invalid ones
+      ids = apps.collect do |app|
+        app.id
+      end.compact
+      
+      # Queries Apple's iTunes Store API for latest cloud data using undocumented bulk method
+      response = Net::HTTP.get('itunes.apple.com', '/lookup?id=' + ids.join(','))
+      results = JSON.parse(response)['results']
+      results.each do |result|
+        if app = get(result['trackId'] || -1)
+          app.clouddata = result
+        end
+      end
+    end
+    
     # Searches for application with given id
     def get id
       apps.select do |app|
