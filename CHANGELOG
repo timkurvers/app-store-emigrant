@@ -1,5 +1,15 @@
 CHANGELOG
 
+v0.0.5
+- Restructured fixtures to improve test coverage
+- Finding applications by id
+- Metadata caching
+- Implemented loading cloud data in bulk
+- Gracefully handle invalid applications in CLI
+
+v0.0.4
+- Removed autoloading mechanism as it breaks on stock Ruby for OSX
+
 v0.0.3
 - Support library organization structures prior to iTunes 9
 - Improved exception messages
