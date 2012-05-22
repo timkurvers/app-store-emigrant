@@ -21,6 +21,7 @@ module AppStore::Emigrant
     FILENAME_VERSION_REGEX = Regexp.new('([0-9.]+)(?:' + VALID_EXTENSIONS.join('|').gsub!('.', '\.') + ')')
     
     attr_reader :path
+    attr_writer :clouddata
     
     # Initializes application from given path
     def initialize path
@@ -44,7 +45,7 @@ module AppStore::Emigrant
     # Filename of this application (including extension)
     def filename
       unless @filename
-        @filename = @path.basename().to_s
+        @filename = @path.basename.to_s
       end
       
       @filename
@@ -60,9 +61,9 @@ module AppStore::Emigrant
       metadata['itemName'] rescue nil
     end
     
-    # Whether this application is valid
+    # Whether this application is valid (validates metadata, id and name)
     def valid?
-      metadata rescue false
+      metadata && id && name rescue false
     end
     
     # Version of this application
@@ -85,15 +86,21 @@ module AppStore::Emigrant
     # Lazily loads local metadata for this application from its iTunesMetadata.plist
     def metadata
       unless @metadata
-        begin
-          Zip::ZipFile.open(@path) do |zip|
-            data = zip.file.read('iTunesMetadata.plist')
-            plist = CFPropertyList::List.new(:data => data)
-            @metadata = CFPropertyList.native_types(plist.value)
+        
+        # Determine plist name
+        plist = Pathname.new(filename).basename('.ipa').to_s + '.plist'
+        
+        unless Cache.has?(plist)
+          begin
+            Zip::ZipFile.open(@path) do |zip|
+              zip.extract('iTunesMetadata.plist', Cache.path_to(plist))
+            end
+          rescue Zip::ZipError => e
+            raise Invalid, e.message
           end
-        rescue Zip::ZipError => e
-          raise Invalid, e.message
         end
+        
+        @metadata = CFPropertyList.native_types(CFPropertyList::List.new(:file => Cache.path_to(plist)).value)
       end
       
       @metadata
