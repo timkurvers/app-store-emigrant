@@ -1,8 +1,5 @@
-
 App Store Emigrant [![Build Status](https://secure.travis-ci.org/timkurvers/app-store-emigrant.png?branch=master)](http://travis-ci.org/timkurvers/app-store-emigrant)
 ==================
-
-Copyright (c) 2012 Tim Kurvers <http://www.moonsphere.net>
 
 App Store Emigrant is a Ruby gem that will manually attempt to verify whether any of your local mobile applications are out of date, which iTunes will refuse to do automatically once you have moved countries.
 
@@ -26,11 +23,11 @@ Installation
 
 App Store Emigrant is available from RubyGems and can be installed through the command-line. Fire up your favourite terminal and run:
 
-    $ gem install app-store-emigrant
+    gem install app-store-emigrant
 
 Installing on **OSX** and using the **default system Ruby**? Run:
 
-    $ sudo gem install app-store-emigrant
+    sudo gem install app-store-emigrant
 
 
 Usage
@@ -38,8 +35,8 @@ Usage
 
 Once installed, a new not-so-fantastically named binary called ```ase``` will be added to your path. Invoke the binary to start the verification process:
 
-    $ ase
-   
+    ase
+
 If App Store Emigrant complains that it cannot find your default library, help it along and specify where your mobile applications lurk:
 
-    $ ase ~/m00sic
+    ase ~/m00sic
