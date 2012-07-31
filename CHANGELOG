@@ -1,5 +1,8 @@
 CHANGELOG
 
+v0.0.7
+- Loosened strictness on runtime dependencies
+
 v0.0.6
 - Added `json` gem as a runtime dependency for Ruby 1.8.x
 
