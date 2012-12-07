@@ -5,34 +5,34 @@ require 'pathname'
 module AppStore; end
 
 module AppStore::Emigrant
-  
+
   # Represents a single iTunes mobile applications library
   class Library
-    
+
     attr_reader :path
-    
+
     # Initializes library from given path
     def initialize path
       @path = Pathname.new path
       @path = @path.expand_path unless @path.absolute?
-      
+
       # Ensure library is a valid directory
       unless @path.directory?
         raise DoesNotExist, "Given path is not a valid mobile applications library: #{@path}"
       end
-      
+
       @apps = nil
     end
-    
+
     # Retrieves a list of applications
     def apps
       unless @apps
         load!
       end
-      
+
       @apps
     end
-    
+
     # Forcefully loads applications from disk
     def load!
       @apps = []
@@ -45,15 +45,15 @@ module AppStore::Emigrant
       end
       self
     end
-    
+
     # Populates applications' cloud data in bulk
     def clouddata!
-      
+
       # Collect all application ids, skipping any invalid ones
       ids = apps.collect do |app|
         app.id
       end.compact
-      
+
       # Queries Apple's iTunes Store API for latest cloud data using undocumented bulk method
       response = Net::HTTP.get('itunes.apple.com', '/lookup?id=' + ids.join(','))
       results = JSON.parse(response)['results']
@@ -63,66 +63,66 @@ module AppStore::Emigrant
         end
       end
     end
-    
+
     # Searches for application with given id
     def get id
       apps.select do |app|
         app.id == id
       end.first
     end
-    
+
     # Searches for applications containing given snippet in filename
     def find snippet
       apps.select do |app|
         app.filename.include? snippet
       end
     end
-    
+
     # Returns the default library (if any) for this system
     # See Apple's support documents as to where libraries can be found
     # - http://support.apple.com/kb/ht1391
     # - http://support.apple.com/kb/ht3847
     def self.default
-      
+
       # Use the homedir provided through the environment
       homedir = ENV['HOME']
-      
+
       # List all locations
       locations = [
-        
+
         # Mac OSX and Windows Vista
         "#{homedir}/Music/iTunes/iTunes Media/Mobile Applications",
-        
+
         # Windows 7
         "#{homedir}/My Music/iTunes/iTunes Media/Mobile Applications",
-        
+
         # Windows XP
         "#{homedir}/My Documents/My Music/iTunes/iTunes Media/Mobile Applications",
-        
+
         # Mac OSX and Windows Vista (prior to iTunes 9)
         "#{homedir}/Music/iTunes/Mobile Applications",
-        
+
         # Windows 7 (prior to iTunes 9)
         "#{homedir}/My Music/iTunes/Mobile Applications",
-        
+
         # Windows XP (prior to iTunes 9)
         "#{homedir}/My Documents/My Music/iTunes/Mobile Applications",
-        
+
       ]
-      
+
       # Raise exception if no default library could be found
       path = Dir.glob(locations).first
       unless path
         raise DoesNotExist, 'Could not locate default iTunes mobile applications library'
       end
-      
+
       # Return an instance of this default library
       Library.new path
     end
-    
+
     # Raised when a library does not exist
     class DoesNotExist < StandardError; end
-    
+
   end
-  
+
 end
