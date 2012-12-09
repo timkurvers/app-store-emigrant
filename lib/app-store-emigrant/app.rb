@@ -83,14 +83,26 @@ module AppStore::Emigrant
       @version
     end
 
+    # Property list name
+    def plist
+      Pathname.new(filename).basename('.ipa').to_s + '.plist'
+    end
+
+    # Whether this application's metadata is cached
+    def cached?
+      Cache.has? plist
+    end
+
+    # Forcefully caches this application's metadata
+    def cache!
+      metadata
+    end
+
     # Lazily loads local metadata for this application from its iTunesMetadata.plist
     def metadata
       unless @metadata
 
-        # Determine plist name
-        plist = Pathname.new(filename).basename('.ipa').to_s + '.plist'
-
-        unless Cache.has?(plist)
+        unless cached?
           begin
             Zip::ZipFile.open(@path) do |zip|
               zip.extract('iTunesMetadata.plist', Cache.path_to(plist))
