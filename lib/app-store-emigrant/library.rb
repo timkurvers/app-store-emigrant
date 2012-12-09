@@ -33,6 +33,11 @@ module AppStore::Emigrant
       @apps
     end
 
+    # Retrieves a list of valid applications
+    def valid_apps
+      apps.select { |app| app.valid? }
+    end
+
     # Forcefully loads applications from disk
     def load!
       @apps = []

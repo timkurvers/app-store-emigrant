@@ -23,6 +23,8 @@ describe Library do
     @library.instance_variable_get('@apps').must_be_nil
     @library.apps.must_be_instance_of Array
     @library.apps.length.must_equal 3
+    @library.valid_apps.must_be_instance_of Array
+    @library.valid_apps.length.must_equal 2
   end
 
   it 'can find applications by (partial) filename' do
