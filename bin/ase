@@ -2,4 +2,4 @@
 
 require 'app-store-emigrant'
 
-AppStore::Emigrant::CLI.new ARGV
+AppStore::Emigrant::CLI.start
