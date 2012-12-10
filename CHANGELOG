@@ -1,5 +1,10 @@
 CHANGELOG
 
+v0.0.8
+- Refactored CLI to use Thor
+- Greatly improved usability for CLI
+- Metadata cache may now be cleared
+
 v0.0.7
 - Loosened strictness on runtime dependencies
 
