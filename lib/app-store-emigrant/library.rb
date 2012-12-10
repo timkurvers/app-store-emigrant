@@ -38,6 +38,11 @@ module AppStore::Emigrant
       apps.select { |app| app.valid? }
     end
 
+    # Retrieves a list of outdated applications
+    def outdated_apps
+      apps.select { |app| app.valid? && app.outdated? }
+    end
+
     # Forcefully loads applications from disk
     def load!
       @apps = []
