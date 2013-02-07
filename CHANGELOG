@@ -1,5 +1,8 @@
 CHANGELOG
 
+v0.0.9
+- Proper dependency resolution on Ruby versions lower than 1.9.2
+
 v0.0.8
 - Refactored CLI to use Thor
 - Greatly improved usability for CLI
