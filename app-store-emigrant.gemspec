@@ -24,12 +24,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'rainbow',        '~> 1.1'
   s.add_dependency 'CFPropertyList', '~> 2.0'
   s.add_dependency 'thor',           '~> 0.16.0'
-
+  s.add_dependency 'json'
+  s.add_development_dependency 'minitest'
   s.add_development_dependency 'rake'
-
-  if RUBY_VERSION < '1.9.2'
-    s.add_dependency 'json'
-    s.add_development_dependency 'minitest'
-  end
 
 end
