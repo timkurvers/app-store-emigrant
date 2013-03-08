@@ -1,5 +1,10 @@
-App Store Emigrant [![Build Status](https://secure.travis-ci.org/timkurvers/app-store-emigrant.png?branch=master)](http://travis-ci.org/timkurvers/app-store-emigrant)
+App Store Emigrant
 ==================
+
+[![Gem Version](https://badge.fury.io/rb/app-store-emigrant.png)](https://rubygems.org/gems/app-store-emigrant)
+[![Build Status](https://secure.travis-ci.org/timkurvers/app-store-emigrant.png?branch=master)](https://travis-ci.org/timkurvers/app-store-emigrant)
+[![Dependency Status](https://gemnasium.com/timkurvers/app-store-emigrant.png)](https://gemnasium.com/timkurvers/app-store-emigrant)
+[![Code Climate](https://codeclimate.com/github/timkurvers/app-store-emigrant.png)](https://codeclimate.com/github/timkurvers/app-store-emigrant)
 
 App Store Emigrant is a Ruby gem that will manually attempt to verify whether any of your local mobile applications are out of date, which iTunes will refuse to do automatically once you have moved countries.
 
