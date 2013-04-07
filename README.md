@@ -1,5 +1,4 @@
-App Store Emigrant
-==================
+# App Store Emigrant
 
 [![Gem Version](https://badge.fury.io/rb/app-store-emigrant.png)](https://rubygems.org/gems/app-store-emigrant)
 [![Build Status](https://secure.travis-ci.org/timkurvers/app-store-emigrant.png?branch=master)](https://travis-ci.org/timkurvers/app-store-emigrant)
@@ -12,8 +11,8 @@ App Store Emigrant is a Ruby gem that will manually attempt to verify whether an
 
 Licensed under the **MIT** license, see LICENSE for more information.
 
-Background
-----------
+
+## Background
 
 For more information on the issues faced when moving countries with regards to Apple's ecosystem please see [these](https://discussions.apple.com/thread/2443094) [discussions](https://discussions.apple.com/message/16273593).
 
@@ -23,8 +22,8 @@ App Store Emigrant tries to soothe these pains - albeit only partially - by scan
 
 ![App Store Emigrant](http://office.moonsphere.net/app-store-emigrant.png?v2)
 
-Installation
-------------
+
+## Installation
 
 App Store Emigrant is available from RubyGems and can be installed through the command-line.
 
@@ -37,8 +36,7 @@ Installing on **OSX** and using the **default system Ruby**? Run:
     sudo gem install app-store-emigrant
 
 
-Usage
------
+## Usage
 
 Once installed, a new not-so-fantastically named binary called ```ase``` will be added to your path.
 
