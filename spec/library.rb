@@ -1,9 +1,4 @@
-require 'app-store-emigrant'
-require 'helpers'
-require 'minitest/spec'
-require 'minitest/autorun'
-
-include AppStore::Emigrant
+require 'spec_helper'
 
 describe Library do
 
