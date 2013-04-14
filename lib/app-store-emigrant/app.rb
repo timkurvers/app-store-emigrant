@@ -93,11 +93,6 @@ module AppStore::Emigrant
       Cache.has? plist
     end
 
-    # Forcefully caches this application's metadata
-    def cache!
-      metadata
-    end
-
     # Lazily loads local metadata for this application from its iTunesMetadata.plist
     def metadata
       unless @metadata
@@ -117,6 +112,9 @@ module AppStore::Emigrant
 
       @metadata
     end
+
+    # Forcefully caches this application's metadata
+    alias_method :cache!, :metadata
 
     # Lazily queries Apple's iTunes Store API for latest cloud data
     # Note: Clouddata may be nil if the application was removed from the store
