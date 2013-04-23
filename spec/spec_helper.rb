@@ -19,3 +19,8 @@ ROOT = File.dirname __FILE__
 AppStore::Emigrant::Cache.clear!
 
 include AppStore::Emigrant
+
+# Convenience method to retrieve a fixture
+def fixture name
+  File.read ROOT + '/fixtures/' + name
+end
