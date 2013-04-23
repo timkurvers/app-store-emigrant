@@ -20,6 +20,14 @@ describe Library do
     @library.apps.length.must_equal 3
     @library.valid_apps.must_be_instance_of Array
     @library.valid_apps.length.must_equal 2
+    Net::HTTP.stub :get, lambda { |host, path|
+      path.match('344186162$') ? fixture('GTA.json') : fixture('Soosiz.json')
+    } do
+      @library.outdated_apps.must_be_instance_of Array
+      @library.outdated_apps.length.must_equal 2
+      @library.outdated_apps.first.cloudversion.must_equal '1.1.0'
+      @library.outdated_apps.last.cloudversion.must_equal '1.3'
+    end
   end
 
   it 'can find applications by (partial) filename' do
