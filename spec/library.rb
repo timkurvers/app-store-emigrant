@@ -14,6 +14,20 @@ describe Library do
     end.must_raise Library::DoesNotExist
   end
 
+  it 'can find default library' do
+    Library.stub_const :DEFAULT_LOCATIONS, [@library.path] do
+      Library.default.must_be_instance_of Library
+    end
+  end
+
+  it 'will raise an exception when default library can not be found' do
+    Library.stub_const :DEFAULT_LOCATIONS, [] do
+      lambda do
+        Library.default
+      end.must_raise Library::DoesNotExist
+    end
+  end
+
   it 'will gracefully and lazily load applications' do
     @library.instance_variable_get('@apps').must_be_nil
     @library.apps.must_be_instance_of Array

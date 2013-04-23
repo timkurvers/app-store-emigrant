@@ -8,6 +8,7 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
 SimpleCov.start
 
 require 'minitest/spec'
+require 'minitest/stub_const'
 require 'minitest/autorun'
 
 require 'app-store-emigrant'

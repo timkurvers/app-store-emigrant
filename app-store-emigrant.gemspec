@@ -29,5 +29,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'coveralls'
   s.add_development_dependency 'minitest'
+  s.add_development_dependency 'minitest-stub-const'
   s.add_development_dependency 'rake'
 end
