@@ -9,6 +9,38 @@ module AppStore::Emigrant
   # Represents a single iTunes mobile applications library
   class Library
 
+    # List of default library locations
+    DEFAULT_LOCATIONS = begin
+
+      # Use the homedir provided through the environment
+      homedir = ENV['HOME']
+
+      # See Apple's support documents as to where libraries can be found
+      # - http://support.apple.com/kb/ht1391
+      # - http://support.apple.com/kb/ht3847
+      [
+
+        # Mac OSX and Windows Vista
+        "#{homedir}/Music/iTunes/iTunes Media/Mobile Applications",
+
+        # Windows 7
+        "#{homedir}/My Music/iTunes/iTunes Media/Mobile Applications",
+
+        # Windows XP
+        "#{homedir}/My Documents/My Music/iTunes/iTunes Media/Mobile Applications",
+
+        # Mac OSX and Windows Vista (prior to iTunes 9)
+        "#{homedir}/Music/iTunes/Mobile Applications",
+
+        # Windows 7 (prior to iTunes 9)
+        "#{homedir}/My Music/iTunes/Mobile Applications",
+
+        # Windows XP (prior to iTunes 9)
+        "#{homedir}/My Documents/My Music/iTunes/Mobile Applications"
+
+      ]
+    end
+
     attr_reader :path
 
     # Initializes library from given path
@@ -89,39 +121,10 @@ module AppStore::Emigrant
     end
 
     # Returns the default library (if any) for this system
-    # See Apple's support documents as to where libraries can be found
-    # - http://support.apple.com/kb/ht1391
-    # - http://support.apple.com/kb/ht3847
     def self.default
 
-      # Use the homedir provided through the environment
-      homedir = ENV['HOME']
-
-      # List all locations
-      locations = [
-
-        # Mac OSX and Windows Vista
-        "#{homedir}/Music/iTunes/iTunes Media/Mobile Applications",
-
-        # Windows 7
-        "#{homedir}/My Music/iTunes/iTunes Media/Mobile Applications",
-
-        # Windows XP
-        "#{homedir}/My Documents/My Music/iTunes/iTunes Media/Mobile Applications",
-
-        # Mac OSX and Windows Vista (prior to iTunes 9)
-        "#{homedir}/Music/iTunes/Mobile Applications",
-
-        # Windows 7 (prior to iTunes 9)
-        "#{homedir}/My Music/iTunes/Mobile Applications",
-
-        # Windows XP (prior to iTunes 9)
-        "#{homedir}/My Documents/My Music/iTunes/Mobile Applications",
-
-      ]
-
       # Raise exception if no default library could be found
-      path = Dir.glob(locations).first
+      path = Dir.glob(DEFAULT_LOCATIONS).first
       unless path
         raise DoesNotExist, 'Could not locate default iTunes mobile applications library'
       end
