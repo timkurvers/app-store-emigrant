@@ -44,13 +44,21 @@ describe App do
   end
 
   it 'can load cloud data' do
-    @gta.cloudversion.must_equal '1.1.0'
-    @soosiz.cloudversion.must_equal '1.3'
+    Net::HTTP.stub :get, fixture('GTA.json') do
+      @gta.cloudversion.must_equal '1.1.0'
+    end
+    Net::HTTP.stub :get, fixture('Soosiz.json') do
+      @soosiz.cloudversion.must_equal '1.3'
+    end
   end
 
   it 'can determine whether it is outdated' do
-    @gta.outdated?.must_equal true
-    @soosiz.outdated?.must_equal true
+    Net::HTTP.stub :get, fixture('GTA.json') do
+      @gta.outdated?.must_equal true
+    end
+    Net::HTTP.stub :get, fixture('Soosiz.json') do
+      @soosiz.outdated?.must_equal true
+    end
   end
 
 end
