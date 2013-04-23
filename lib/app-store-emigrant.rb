@@ -1,4 +1,3 @@
-
 require 'app-store-emigrant/app'
 require 'app-store-emigrant/cache'
 require 'app-store-emigrant/cli'

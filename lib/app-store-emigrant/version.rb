@@ -1,4 +1,3 @@
-
 module AppStore; end
 
 module AppStore::Emigrant
