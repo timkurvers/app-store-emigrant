@@ -39,7 +39,9 @@ describe Library do
     gta.instance_variable_get('@clouddata').must_be_nil
     soosiz.instance_variable_get('@clouddata').must_be_nil
 
-    @library.clouddata!
+    Net::HTTP.stub :get, fixture('bulk-clouddata.json') do
+      @library.clouddata!
+    end
 
     gta.instance_variable_get('@clouddata').must_be_instance_of Hash
     soosiz.instance_variable_get('@clouddata').must_be_instance_of Hash
