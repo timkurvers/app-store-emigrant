@@ -11,6 +11,7 @@ module AppStore::Emigrant
 
   # Represents a single iTunes mobile application
   class App
+    include Comparable
 
     # List of valid extensions for an application
     VALID_EXTENSIONS = [
@@ -135,6 +136,11 @@ module AppStore::Emigrant
     # Whether this application is outdated
     def outdated?
       return cloudversion && version != cloudversion
+    end
+
+    # Comparator
+    def <=> other
+      filename <=> other.filename
     end
 
     # Raised when an application does not exist

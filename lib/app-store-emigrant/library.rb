@@ -87,7 +87,7 @@ module AppStore::Emigrant
       end
 
       # Sort alphabetically
-      @apps.sort_by!(&:filename)
+      @apps.sort!
 
       self
     end
