@@ -28,19 +28,23 @@ describe Library do
     end
   end
 
-  it 'will gracefully and lazily load applications' do
+  it 'will gracefully and lazily load applications in alphabetical order' do
     @library.instance_variable_get('@apps').must_be_nil
     @library.apps.must_be_instance_of Array
     @library.apps.length.must_equal 3
+
     @library.valid_apps.must_be_instance_of Array
     @library.valid_apps.length.must_equal 2
+    @library.valid_apps.first.filename.must_equal 'GTA.ipa'
+    @library.valid_apps.last.filename.must_equal 'Soosiz.ipa'
+
     Net::HTTP.stub :get, lambda { |host, path|
       path.match('344186162$') ? fixture('api/GTA.json') : fixture('api/Soosiz.json')
     } do
       @library.outdated_apps.must_be_instance_of Array
       @library.outdated_apps.length.must_equal 2
-      @library.outdated_apps.find { |app| app.id == 344186162 }.cloudversion.must_equal '1.1.0'
-      @library.outdated_apps.find { |app| app.id == 331891505 }.cloudversion.must_equal '1.3'
+      @library.outdated_apps.first.cloudversion.must_equal '1.1.0'
+      @library.outdated_apps.last.cloudversion.must_equal '1.3'
     end
   end
 

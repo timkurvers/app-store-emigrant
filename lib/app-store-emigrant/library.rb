@@ -85,6 +85,10 @@ module AppStore::Emigrant
           rescue App::Invalid; end
         end
       end
+
+      # Sort alphabetically
+      @apps.sort_by!(&:filename)
+
       self
     end
 
