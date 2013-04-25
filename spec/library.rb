@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Library do
 
   before do
-    @library = Library.new(ROOT + '/fixtures/dummy-library')
+    @library = Library.new(LIBRARY)
   end
 
   it 'must be located in a valid directory' do

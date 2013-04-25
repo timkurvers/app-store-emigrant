@@ -13,8 +13,9 @@ require 'minitest/autorun'
 
 require 'app-store-emigrant'
 
-# Helper constant holding path to tests-folder
+# Helper constants
 ROOT = File.dirname __FILE__
+LIBRARY = ROOT + '/fixtures/dummy-library'
 
 # Clear the cache before running tests
 AppStore::Emigrant::Cache.clear!

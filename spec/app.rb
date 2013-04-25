@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe App do
 
-  LIBRARY = ROOT + '/fixtures/dummy-library'
-
   before do
     @dummy = App.new(LIBRARY + '/Dummy.ipa')
     @gta = App.new(LIBRARY + '/GTA.ipa')
