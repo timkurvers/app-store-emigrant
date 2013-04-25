@@ -9,21 +9,23 @@ module AppStore::Emigrant
 
   # Represents the command line interface
   class CLI < Thor
+    class_option :clear_cache, :type => :boolean, :default => false, :aliases => '-c', :desc => 'Clears application cache'
 
-    desc 'scan [LIBRARY PATH]', 'Scans an iTunes library and reports which of its mobile applications are out of date'
-    method_option :clear_cache, :type => :boolean, :default => false, :aliases => '-c', :desc => 'Clears application cache prior to scanning'
-    def scan path = nil
-
-      # Ensure all output is immediately flushed
-      $stdout.sync = true
-
-      # Use the default library on this system when no path is specified
-      library = path ? Library.new(path) : Library.default
+    def initialize(args, opts, config)
+      super
 
       # Clear cache if requested
       if options[:clear_cache]
         Cache.clear!
       end
+
+    end
+
+    desc 'cache [LIBRARY PATH]', 'Verifies cache integrity and lists applications currently cached'
+    def cache path = nil
+
+      # Use the default library on this system when no path is specified
+      library = path ? Library.new(path) : Library.default
 
       # Verify cache integrity
       puts 'Verifying cache integrity..'
@@ -44,6 +46,16 @@ module AppStore::Emigrant
 
       # Print cache statistics
       puts "Done. Currently caching #{Cache.count} applications on your system."
+
+    end
+
+    desc 'scan [LIBRARY PATH]', 'Scans an iTunes library and reports which of its mobile applications are out of date'
+    def scan path = nil
+
+      # Use the default library on this system when no path is specified
+      library = path ? Library.new(path) : Library.default
+
+      invoke :cache, path
 
       puts
 
