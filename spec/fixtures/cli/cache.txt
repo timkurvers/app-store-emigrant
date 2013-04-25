@@ -1,0 +1,5 @@
+Verifying cache integrity..
+[31m[1m ! Cannot cache Dummy.ipa: Zip end of central directory signature not found[0m
+ + Grand Theft Auto: Chinatown Wars v0.9
+ + Soosiz v1.1
+Done. Currently caching 2 applications on your system.

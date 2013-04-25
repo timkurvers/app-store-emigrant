@@ -1,0 +1,10 @@
+Verifying cache integrity..
+[31m[1m ! Cannot cache Dummy.ipa: Zip end of central directory signature not found[0m
+ + Grand Theft Auto: Chinatown Wars v0.9
+ + Soosiz v1.1
+Done. Currently caching 2 applications on your system.
+
+Your library contains 2 valid applications, of which 2 are outdated:
+[31m[1m ! Dummy.ipa is invalid (metadata, id or name missing)[0m
+ · Grand Theft Auto: Chinatown Wars [31m[1mv0.9[0m[37m · v1.1.0 available[0m
+ · Soosiz [31m[1mv1.1[0m[37m · v1.3 available[0m
