@@ -39,8 +39,8 @@ describe Library do
     } do
       @library.outdated_apps.must_be_instance_of Array
       @library.outdated_apps.length.must_equal 2
-      @library.outdated_apps.first.cloudversion.must_equal '1.1.0'
-      @library.outdated_apps.last.cloudversion.must_equal '1.3'
+      @library.outdated_apps.find { |app| app.id == 344186162 }.cloudversion.must_equal '1.1.0'
+      @library.outdated_apps.find { |app| app.id == 331891505 }.cloudversion.must_equal '1.3'
     end
   end
 
