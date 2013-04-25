@@ -35,7 +35,7 @@ describe Library do
     @library.valid_apps.must_be_instance_of Array
     @library.valid_apps.length.must_equal 2
     Net::HTTP.stub :get, lambda { |host, path|
-      path.match('344186162$') ? fixture('GTA.json') : fixture('Soosiz.json')
+      path.match('344186162$') ? fixture('api/GTA.json') : fixture('api/Soosiz.json')
     } do
       @library.outdated_apps.must_be_instance_of Array
       @library.outdated_apps.length.must_equal 2
@@ -61,7 +61,7 @@ describe Library do
     gta.instance_variable_get('@clouddata').must_be_nil
     soosiz.instance_variable_get('@clouddata').must_be_nil
 
-    Net::HTTP.stub :get, fixture('bulk-clouddata.json') do
+    Net::HTTP.stub :get, fixture('api/bulk-clouddata.json') do
       @library.clouddata!
     end
 
