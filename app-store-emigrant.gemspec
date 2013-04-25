@@ -20,15 +20,15 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ['lib']
 
+  s.add_dependency 'CFPropertyList', '~> 2.0'
+  s.add_dependency 'json'
   s.add_dependency 'rubyzip',        '~> 0.9'
   s.add_dependency 'rainbow',        '~> 1.1'
-  s.add_dependency 'CFPropertyList', '~> 2.0'
   s.add_dependency 'thor',           '~> 0.18.0'
-  s.add_dependency 'json'
 
-  s.add_development_dependency 'simplecov'
   s.add_development_dependency 'coveralls'
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'minitest-stub-const'
   s.add_development_dependency 'rake'
+  s.add_development_dependency 'simplecov'
 end
