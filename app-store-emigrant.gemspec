@@ -2,7 +2,7 @@
 
 $:.push File.expand_path('../lib', __FILE__)
 
-require 'app-store-emigrant/version'
+require 'app_store/emigrant/version'
 
 Gem::Specification.new do |s|
   s.name        = 'app-store-emigrant'
