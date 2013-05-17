@@ -4,5 +4,5 @@ source 'http://rubygems.org'
 gemspec
 
 group :development do
-  gem 'webmock', :git => 'git@github.com:timkurvers/webmock.git', :branch => 'minitest-5-compatibility'
+  gem 'webmock', :git => 'git://github.com/timkurvers/webmock.git', :branch => 'minitest-5-compatibility'
 end
