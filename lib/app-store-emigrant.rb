@@ -1,5 +1,6 @@
 require 'app_store/emigrant/app'
 require 'app_store/emigrant/cache'
 require 'app_store/emigrant/cli'
+require 'app_store/emigrant/dotfolder'
 require 'app_store/emigrant/library'
 require 'app_store/emigrant/version'

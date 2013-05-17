@@ -1,4 +1,4 @@
-require 'pathname'
+require 'app_store/emigrant/dotfolder'
 
 module AppStore; end
 
@@ -8,7 +8,7 @@ module AppStore::Emigrant
   class Cache
 
     # Cache location
-    LOCATION = Pathname.new('~/.ase-cache').expand_path
+    LOCATION = AppStore::Emigrant::DOTFOLDER + 'cache'
 
     # Ensures cache location availability
     def self.ensure!
