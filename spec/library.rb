@@ -38,14 +38,13 @@ describe Library do
     @library.valid_apps.first.filename.must_equal 'GTA.ipa'
     @library.valid_apps.last.filename.must_equal 'Soosiz.ipa'
 
-    Net::HTTP.stub :get, lambda { |host, path|
-      path.match('344186162$') ? fixture('api/GTA.json') : fixture('api/Soosiz.json')
-    } do
-      @library.outdated_apps.must_be_instance_of Array
-      @library.outdated_apps.length.must_equal 2
-      @library.outdated_apps.first.cloudversion.must_equal '1.1.0'
-      @library.outdated_apps.last.cloudversion.must_equal '1.3'
-    end
+    stub_request(:get, 'http://itunes.apple.com/lookup?id=344186162').to_return :body => fixture('api/GTA.json')
+    stub_request(:get, 'http://itunes.apple.com/lookup?id=331891505').to_return :body => fixture('api/Soosiz.json')
+
+    @library.outdated_apps.must_be_instance_of Array
+    @library.outdated_apps.length.must_equal 2
+    @library.outdated_apps.first.cloudversion.must_equal '1.1.0'
+    @library.outdated_apps.last.cloudversion.must_equal '1.3'
   end
 
   it 'can find applications by (partial) filename' do
@@ -65,9 +64,9 @@ describe Library do
     gta.instance_variable_get('@clouddata').must_be_nil
     soosiz.instance_variable_get('@clouddata').must_be_nil
 
-    Net::HTTP.stub :get, fixture('api/bulk-clouddata.json') do
-      @library.clouddata!
-    end
+    stub_request(:get, 'http://itunes.apple.com/lookup?id=344186162,331891505').to_return :body => fixture('api/bulk-clouddata.json')
+
+    @library.clouddata!
 
     gta.instance_variable_get('@clouddata').must_be_instance_of Hash
     soosiz.instance_variable_get('@clouddata').must_be_instance_of Hash

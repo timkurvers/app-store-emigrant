@@ -10,6 +10,7 @@ SimpleCov.start
 require 'minitest/stub_const'
 require 'minitest/autorun'
 require 'mocha/setup'
+require 'webmock/minitest'
 
 require 'app-store-emigrant'
 

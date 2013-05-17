@@ -42,21 +42,19 @@ describe App do
   end
 
   it 'can load cloud data' do
-    Net::HTTP.stub :get, fixture('api/GTA.json') do
-      @gta.cloudversion.must_equal '1.1.0'
-    end
-    Net::HTTP.stub :get, fixture('api/Soosiz.json') do
-      @soosiz.cloudversion.must_equal '1.3'
-    end
+    stub_request(:get, 'http://itunes.apple.com/lookup?id=344186162').to_return :body => fixture('api/GTA.json')
+    stub_request(:get, 'http://itunes.apple.com/lookup?id=331891505').to_return :body => fixture('api/Soosiz.json')
+
+    @gta.cloudversion.must_equal '1.1.0'
+    @soosiz.cloudversion.must_equal '1.3'
   end
 
   it 'can determine whether it is outdated' do
-    Net::HTTP.stub :get, fixture('api/GTA.json') do
-      @gta.outdated?.must_equal true
-    end
-    Net::HTTP.stub :get, fixture('api/Soosiz.json') do
-      @soosiz.outdated?.must_equal true
-    end
+    stub_request(:get, 'http://itunes.apple.com/lookup?id=344186162').to_return :body => fixture('api/GTA.json')
+    stub_request(:get, 'http://itunes.apple.com/lookup?id=331891505').to_return :body => fixture('api/Soosiz.json')
+
+    @gta.outdated?.must_equal true
+    @soosiz.outdated?.must_equal true
   end
 
 end

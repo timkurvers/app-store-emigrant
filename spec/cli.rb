@@ -19,6 +19,8 @@ describe CLI do
   end
 
   it 'can scan an iTunes library' do
+    stub_request(:get, 'http://itunes.apple.com/lookup?id=344186162,331891505').to_return :body => fixture('api/bulk-clouddata.json')
+
     out, err = capture_io do
       CLI.start ['scan', '--clear-cache', LIBRARY]
     end
