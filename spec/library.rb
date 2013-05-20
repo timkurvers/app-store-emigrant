@@ -7,69 +7,67 @@ describe Library do
   end
 
   it 'must be located in a valid directory' do
-    @library.must_be_instance_of Library
+    expect(@library).to be_an_instance_of Library
 
-    lambda do
+    expect do
       Library.new(ROOT + '/non-existent-library')
-    end.must_raise Library::DoesNotExist
+    end.to raise_error Library::DoesNotExist
   end
 
   it 'can find default library' do
-    Library.stub_const :DEFAULT_LOCATIONS, [@library.path] do
-      Library.default.must_be_instance_of Library
-    end
+    stub_const 'AppStore::Emigrant::Library::DEFAULT_LOCATIONS', [@library.path]
+    expect(Library.default).to be_an_instance_of Library
   end
 
   it 'will raise an exception when default library can not be found' do
-    Library.stub_const :DEFAULT_LOCATIONS, [] do
-      lambda do
-        Library.default
-      end.must_raise Library::DoesNotExist
-    end
+    stub_const 'AppStore::Emigrant::Library::DEFAULT_LOCATIONS', []
+    expect do
+      Library.default
+    end.to raise_error Library::DoesNotExist
   end
 
   it 'will gracefully and lazily load applications in alphabetical order' do
-    @library.instance_variable_get('@apps').must_be_nil
-    @library.apps.must_be_instance_of Array
-    @library.apps.length.must_equal 3
+    expect(@library.instance_variable_get('@apps')).to be_nil
+    expect(@library.apps).to be_an_instance_of Array
+    expect(@library.apps.length).to eq 3
 
-    @library.valid_apps.must_be_instance_of Array
-    @library.valid_apps.length.must_equal 2
-    @library.valid_apps.first.filename.must_equal 'GTA.ipa'
-    @library.valid_apps.last.filename.must_equal 'Soosiz.ipa'
+    expect(@library.valid_apps).to be_an_instance_of Array
+    expect(@library.valid_apps.length).to eq 2
+    expect(@library.valid_apps.first.filename).to eq 'GTA.ipa'
+    expect(@library.valid_apps.last.filename).to eq 'Soosiz.ipa'
 
     stub_request(:get, 'http://itunes.apple.com/lookup?id=344186162').to_return :body => fixture('api/GTA.json')
     stub_request(:get, 'http://itunes.apple.com/lookup?id=331891505').to_return :body => fixture('api/Soosiz.json')
 
-    @library.outdated_apps.must_be_instance_of Array
-    @library.outdated_apps.length.must_equal 2
-    @library.outdated_apps.first.cloudversion.must_equal '1.1.0'
-    @library.outdated_apps.last.cloudversion.must_equal '1.3'
+    expect(@library.outdated_apps).to be_an_instance_of Array
+    expect(@library.outdated_apps.length).to eq 2
+    expect(@library.outdated_apps.first.cloudversion).to eq '1.1.0'
+    expect(@library.outdated_apps.last.cloudversion).to eq '1.3'
   end
 
   it 'can find applications by (partial) filename' do
-    @library.find('Dummy').length.must_equal 1
-    @library.find('GTA').length.must_equal 1
-    @library.find('Soosiz').length.must_equal 1
+    expect(@library.find('Dummy').length).to eq 1
+    expect(@library.find('GTA').length).to eq 1
+    expect(@library.find('Soosiz').length).to eq 1
   end
 
   it 'can get applications by id' do
-    @library.get(344186162).filename.must_equal 'GTA.ipa'
-    @library.get(331891505).filename.must_equal 'Soosiz.ipa'
+    expect(@library.get(344186162).filename).to eq 'GTA.ipa'
+    expect(@library.get(331891505).filename).to eq 'Soosiz.ipa'
   end
 
   it 'can load cloud data in bulk' do
     gta = @library.find('GTA').first
     soosiz = @library.find('Soosiz').first
-    gta.instance_variable_get('@clouddata').must_be_nil
-    soosiz.instance_variable_get('@clouddata').must_be_nil
+    expect(gta.instance_variable_get('@clouddata')).to be_nil
+    expect(soosiz.instance_variable_get('@clouddata')).to be_nil
 
     stub_request(:get, 'http://itunes.apple.com/lookup?id=344186162,331891505').to_return :body => fixture('api/bulk-clouddata.json')
 
     @library.clouddata!
 
-    gta.instance_variable_get('@clouddata').must_be_instance_of Hash
-    soosiz.instance_variable_get('@clouddata').must_be_instance_of Hash
+    expect(gta.instance_variable_get('@clouddata')).to be_an_instance_of Hash
+    expect(soosiz.instance_variable_get('@clouddata')).to be_an_instance_of Hash
   end
 
 end

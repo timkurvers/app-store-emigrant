@@ -9,52 +9,52 @@ describe App do
   end
 
   it 'must be a valid file on disk' do
-    lambda do
+    expect do
       App.new(LIBRARY + '/Non-Existent.ipa')
-    end.must_raise App::DoesNotExist
+    end.to raise_error App::DoesNotExist
   end
 
   it 'must have a valid extension' do
-    lambda do
+    expect do
       App.new(LIBRARY + '/Non-Existent.ipa')
-    end.must_raise App::DoesNotExist
+    end.to raise_error App::DoesNotExist
   end
 
   it 'can determine its own filename' do
-    @gta.filename.must_equal 'GTA.ipa'
-    @soosiz.filename.must_equal 'Soosiz.ipa'
+    expect(@gta.filename).to eq 'GTA.ipa'
+    expect(@soosiz.filename).to eq 'Soosiz.ipa'
   end
 
   it 'will report invalid structures' do
-    @dummy.valid?.must_equal false
-    @dummy.id.must_equal nil
-    @dummy.version.must_equal nil
+    expect(@dummy).not_to be_valid
+    expect(@dummy.id).to be_nil
+    expect(@dummy.version).to be_nil
   end
 
   it 'can extract its name' do
-    @gta.name.must_equal 'Grand Theft Auto: Chinatown Wars'
-    @soosiz.name.must_equal 'Soosiz'
+    expect(@gta.name).to eq 'Grand Theft Auto: Chinatown Wars'
+    expect(@soosiz.name).to eq 'Soosiz'
   end
 
   it 'can query local metadata' do
-    @gta.version.must_equal '0.9'
-    @soosiz.version.must_equal '1.1'
+    expect(@gta.version).to eq '0.9'
+    expect(@soosiz.version).to eq '1.1'
   end
 
   it 'can load cloud data' do
     stub_request(:get, 'http://itunes.apple.com/lookup?id=344186162').to_return :body => fixture('api/GTA.json')
     stub_request(:get, 'http://itunes.apple.com/lookup?id=331891505').to_return :body => fixture('api/Soosiz.json')
 
-    @gta.cloudversion.must_equal '1.1.0'
-    @soosiz.cloudversion.must_equal '1.3'
+    expect(@gta.cloudversion).to eq '1.1.0'
+    expect(@soosiz.cloudversion).to eq '1.3'
   end
 
   it 'can determine whether it is outdated' do
     stub_request(:get, 'http://itunes.apple.com/lookup?id=344186162').to_return :body => fixture('api/GTA.json')
     stub_request(:get, 'http://itunes.apple.com/lookup?id=331891505').to_return :body => fixture('api/Soosiz.json')
 
-    @gta.outdated?.must_equal true
-    @soosiz.outdated?.must_equal true
+    expect(@gta).to be_outdated
+    expect(@soosiz).to be_outdated
   end
 
 end

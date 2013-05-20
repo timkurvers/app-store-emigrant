@@ -7,10 +7,7 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
 ]
 SimpleCov.start
 
-require 'minitest/stub_const'
-require 'minitest/autorun'
-require 'mocha/setup'
-require 'webmock/minitest'
+require 'webmock/rspec'
 
 require 'app-store-emigrant'
 
@@ -26,4 +23,22 @@ include AppStore::Emigrant
 # Convenience method to retrieve a fixture
 def fixture name
   File.read ROOT + '/fixtures/' + name
+end
+
+# Captures IO for the duration of the given block
+# See: https://github.com/seattlerb/minitest/blob/master/lib/minitest/assertions.rb#L395
+def capture_io
+  require 'stringio'
+
+  captured_stdout, captured_stderr = StringIO.new, StringIO.new
+
+  orig_stdout, orig_stderr = $stdout, $stderr
+  $stdout, $stderr         = captured_stdout, captured_stderr
+
+  yield
+
+  return captured_stdout.string, captured_stderr.string
+ensure
+  $stdout = orig_stdout
+  $stderr = orig_stderr
 end

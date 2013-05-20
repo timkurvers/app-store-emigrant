@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CLI do
 
   it 'can clear the cache' do
-    Cache.expects(:clear!)
+    Cache.should_receive :clear!
 
     capture_io do
       CLI.start ['--clear-cache']
@@ -15,7 +15,7 @@ describe CLI do
       CLI.start ['cache', '--clear-cache', '--library', LIBRARY]
     end
 
-    out.must_equal fixture('cli/cache.txt')
+    expect(out).to eq fixture('cli/cache.txt')
   end
 
   it 'can scan an iTunes library' do
@@ -25,7 +25,7 @@ describe CLI do
       CLI.start ['scan', '--clear-cache', '--library', LIBRARY]
     end
 
-    out.must_equal fixture('cli/scan.txt')
+    expect(out).to eq fixture('cli/scan.txt')
   end
 
   it 'can reports its version' do
@@ -33,7 +33,7 @@ describe CLI do
       CLI.start ['version']
     end
 
-    out.must_equal "App Store Emigrant v#{AppStore::Emigrant::VERSION}\n"
+    expect(out).to eq "App Store Emigrant v#{AppStore::Emigrant::VERSION}\n"
   end
 
 end

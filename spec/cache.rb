@@ -4,23 +4,23 @@ describe Cache do
 
   it 'can be deleted' do
     Cache.delete!
-    File.directory?(Cache::LOCATION).must_equal false
+    expect(File.directory?(Cache::LOCATION)).to be_false
   end
 
   it 'will be created when non-existent' do
     Cache.delete!
-    File.directory?(Cache::LOCATION).must_equal false
+    expect(File.directory?(Cache::LOCATION)).to be_false
 
     Cache.ensure!
-    File.directory?(Cache::LOCATION).must_equal true
+    expect(File.directory?(Cache::LOCATION)).to be_true
   end
 
   it 'can report the number of cached items' do
     Cache.clear!
-    Cache.count.must_equal 0
+    expect(Cache.count).to eq 0
 
     App.new(LIBRARY + '/GTA.ipa').cache!
-    Cache.count.must_equal 1
+    expect(Cache.count).to eq 1
   end
 
 end
