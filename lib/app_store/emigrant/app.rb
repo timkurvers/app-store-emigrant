@@ -135,7 +135,7 @@ module AppStore::Emigrant
 
     # Whether this application is outdated
     def outdated?
-      return cloudversion && version != cloudversion
+      cloudversion && Gem::Version.new(cloudversion) > Gem::Version.new(version)
     end
 
     # Comparator

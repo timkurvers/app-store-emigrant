@@ -57,4 +57,33 @@ describe App do
     expect(@soosiz).to be_outdated
   end
 
+  it 'can deal with oddities between local and cloud versions' do
+
+    # Chrome
+    @dummy.stub :version => '26.1410.53'
+    @dummy.stub :cloudversion => '26.0.1410.53'
+    expect(@dummy).not_to be_outdated
+
+    # Facebook (in the past)
+    @dummy.stub :version => '4100.0'
+    @dummy.stub :cloudversion => '4.1'
+    expect(@dummy).not_to be_outdated
+
+    # Lara Croft and the Guardian of Light
+    @dummy.stub :version => '11.2'
+    @dummy.stub :cloudversion => '1.1'
+    expect(@dummy).not_to be_outdated
+
+    # Monkey Island 2 Special Edition: LeChuck's Revenge
+    @dummy.stub :version => '1.11'
+    @dummy.stub :cloudversion => '1.1'
+    expect(@dummy).not_to be_outdated
+
+    # UP (in the past)
+    @dummy.stub :version => '1.5.15'
+    @dummy.stub :cloudversion => '1.5'
+    expect(@dummy).not_to be_outdated
+
+  end
+
 end
