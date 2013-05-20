@@ -20,13 +20,6 @@ module AppStore::Emigrant
         Cache.clear!
       end
 
-      # Use the default library on this system when no library is specified
-      @library = if options[:library]
-        Library.new options[:library]
-      else
-        Library.default
-      end
-
     end
 
     desc 'cache', 'Verifies cache integrity and lists applications currently cached'
@@ -36,7 +29,7 @@ module AppStore::Emigrant
       puts 'Verifying cache integrity..'
 
       # Forcefully cache metadata for each application that is not yet cached
-      @library.apps.each do |app|
+      library.apps.each do |app|
 
         unless app.cached?
           begin
@@ -62,13 +55,13 @@ module AppStore::Emigrant
       puts
 
       # Since all apps are cached, load cloud data in bulk
-      @library.clouddata!
+      library.clouddata!
 
       # Print library statistics
-      puts "Your library contains #{@library.valid_apps.length} valid applications, of which #{@library.outdated_apps.length} are outdated:"
+      puts "Your library contains #{library.valid_apps.length} valid applications, of which #{library.outdated_apps.length} are outdated:"
 
       # Loop through all applications
-      @library.apps.each do |app|
+      library.apps.each do |app|
 
         if app.valid?
 
@@ -96,6 +89,17 @@ module AppStore::Emigrant
     desc 'version', 'Prints version information'
     def version
       puts "App Store Emigrant v#{AppStore::Emigrant::VERSION}"
+    end
+
+    protected
+
+    # Use the default library on this system when no library is specified
+    def library
+      @library ||= if options[:library]
+        Library.new options[:library]
+      else
+        Library.default
+      end
     end
 
   end
