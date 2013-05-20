@@ -47,7 +47,7 @@ Invoke its ```scan``` task to start the verification process:
 
 If problems arise finding your default library, specify where your mobile applications lurk:
 
-    ase scan ~/m00sic
+    ase scan --library ~/m00sic
 
 To clear the cache of application metadata, run the scan task with the ```-c``` or ```--clear-cache``` flag.
 

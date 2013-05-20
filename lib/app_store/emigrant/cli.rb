@@ -10,6 +10,7 @@ module AppStore::Emigrant
   # Represents the command line interface
   class CLI < Thor
     class_option :clear_cache, :type => :boolean, :default => false, :aliases => '-c', :desc => 'Clears application cache'
+    class_option :library, :type => :string, :default => nil, :aliases => '-l', :desc => 'Library path'
 
     def initialize(args, opts, config)
       super
@@ -19,19 +20,23 @@ module AppStore::Emigrant
         Cache.clear!
       end
 
+      # Use the default library on this system when no library is specified
+      @library = if options[:library]
+        Library.new options[:library]
+      else
+        Library.default
+      end
+
     end
 
-    desc 'cache [LIBRARY PATH]', 'Verifies cache integrity and lists applications currently cached'
-    def cache path = nil
-
-      # Use the default library on this system when no path is specified
-      library = path ? Library.new(path) : Library.default
+    desc 'cache', 'Verifies cache integrity and lists applications currently cached'
+    def cache
 
       # Verify cache integrity
       puts 'Verifying cache integrity..'
 
       # Forcefully cache metadata for each application that is not yet cached
-      library.apps.each do |app|
+      @library.apps.each do |app|
 
         unless app.cached?
           begin
@@ -49,24 +54,21 @@ module AppStore::Emigrant
 
     end
 
-    desc 'scan [LIBRARY PATH]', 'Scans an iTunes library and reports which of its mobile applications are out of date'
-    def scan path = nil
+    desc 'scan', 'Scans an iTunes library and reports which of its mobile applications are out of date'
+    def scan
 
-      # Use the default library on this system when no path is specified
-      library = path ? Library.new(path) : Library.default
-
-      invoke :cache, path
+      invoke :cache
 
       puts
 
       # Since all apps are cached, load cloud data in bulk
-      library.clouddata!
+      @library.clouddata!
 
       # Print library statistics
-      puts "Your library contains #{library.valid_apps.length} valid applications, of which #{library.outdated_apps.length} are outdated:"
+      puts "Your library contains #{@library.valid_apps.length} valid applications, of which #{@library.outdated_apps.length} are outdated:"
 
       # Loop through all applications
-      library.apps.each do |app|
+      @library.apps.each do |app|
 
         if app.valid?
 

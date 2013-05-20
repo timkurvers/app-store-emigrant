@@ -12,7 +12,7 @@ describe CLI do
 
   it 'can verify cache integrity' do
     out, err = capture_io do
-      CLI.start ['cache', '--clear-cache', LIBRARY]
+      CLI.start ['cache', '--clear-cache', '--library', LIBRARY]
     end
 
     out.must_equal fixture('cli/cache.txt')
@@ -22,7 +22,7 @@ describe CLI do
     stub_request(:get, 'http://itunes.apple.com/lookup?id=344186162,331891505').to_return :body => fixture('api/bulk-clouddata.json')
 
     out, err = capture_io do
-      CLI.start ['scan', '--clear-cache', LIBRARY]
+      CLI.start ['scan', '--clear-cache', '--library', LIBRARY]
     end
 
     out.must_equal fixture('cli/scan.txt')
