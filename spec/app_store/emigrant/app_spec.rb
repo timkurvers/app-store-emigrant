@@ -57,6 +57,12 @@ describe App do
     expect(@soosiz).to be_outdated
   end
 
+  it 'can deal with malformed versions' do
+    @dummy.stub :version => '1.2.0 (27)'
+    @dummy.stub :cloudversion => '1.2.0 (27)'
+    expect(@dummy).not_to be_outdated
+  end
+
   it 'can deal with oddities between local and cloud versions' do
 
     # Chrome
