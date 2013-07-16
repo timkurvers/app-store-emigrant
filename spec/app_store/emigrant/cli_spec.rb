@@ -18,11 +18,23 @@ describe CLI do
     expect(out).to eq fixture('cli/cache.txt')
   end
 
-  it 'can scan an iTunes library' do
+  it 'can scan a given iTunes library' do
     stub_request(:get, 'http://itunes.apple.com/lookup?id=344186162,331891505').to_return :body => fixture('api/bulk-clouddata.json')
 
     out, err = capture_io do
       CLI.start ['scan', '--clear-cache', '--library', LIBRARY]
+    end
+
+    expect(out).to eq fixture('cli/scan.txt')
+  end
+
+  it 'can scan the default iTunes library' do
+    stub_const 'AppStore::Emigrant::Library::DEFAULT_LOCATIONS', [LIBRARY]
+
+    stub_request(:get, 'http://itunes.apple.com/lookup?id=344186162,331891505').to_return :body => fixture('api/bulk-clouddata.json')
+
+    out, err = capture_io do
+      CLI.start ['scan', '--clear-cache']
     end
 
     expect(out).to eq fixture('cli/scan.txt')
