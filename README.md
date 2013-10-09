@@ -12,7 +12,7 @@ App Store Emigrant is a Ruby gem that will manually attempt to verify whether an
 
 Licensed under the **MIT** license, see LICENSE for more information.
 
-**Redundancy notice: Apple has since released a new iTunes version that remedies the issues noted below.**
+**Redundancy notice: Apple has since released a new iTunes version that remedies the issues noted below. This effectively marks App Store Emigrant as redundant, but it will continue to be maintained, for now.**
 
 
 ## Background
