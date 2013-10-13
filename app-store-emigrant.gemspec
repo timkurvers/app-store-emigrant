@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'thor',           '~> 0.18.0'
 
   s.add_development_dependency 'coveralls'
-  s.add_development_dependency 'guard-rspec'
+  s.add_development_dependency 'guard-rspec', '~> 3.1.0'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'simplecov'
