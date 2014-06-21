@@ -4,15 +4,15 @@ describe Cache do
 
   it 'can be deleted' do
     Cache.delete!
-    expect(File.directory?(Cache::LOCATION)).to be_false
+    expect(File.directory?(Cache::LOCATION)).to be false
   end
 
   it 'will be created when non-existent' do
     Cache.delete!
-    expect(File.directory?(Cache::LOCATION)).to be_false
+    expect(File.directory?(Cache::LOCATION)).to be false
 
     Cache.ensure!
-    expect(File.directory?(Cache::LOCATION)).to be_true
+    expect(File.directory?(Cache::LOCATION)).to be true
   end
 
   it 'can report the number of cached items' do
