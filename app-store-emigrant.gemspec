@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'CFPropertyList', '~> 2.0'
   s.add_dependency 'json',           '~> 1.7.7'
+  s.add_dependency 'mime-types',     '~> 1.x'
   s.add_dependency 'rubyzip',        '~> 0.9'
   s.add_dependency 'rainbow',        '~> 1.1'
   s.add_dependency 'thor',           '~> 0.18.0'
