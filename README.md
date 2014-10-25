@@ -23,8 +23,6 @@ For more information on the issues faced when moving countries with regards to A
 
 App Store Emigrant tries to soothe these pains - albeit only partially - by scanning your iTunes library folder for mobile applications and querying iTunes for the latest versions available. One can then manually go into the store and update each application, one by one.
 
-![App Store Emigrant](http://office.moonsphere.net/app-store-emigrant.png?v2)
-
 
 ## Installation
 
