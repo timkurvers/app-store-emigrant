@@ -22,13 +22,14 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'CFPropertyList', '~> 2.0'
   s.add_dependency 'json',           '~> 1.7.7'
+  s.add_dependency 'mime-types',     '~> 1.x'
   s.add_dependency 'rubyzip',        '~> 0.9'
   s.add_dependency 'rainbow',        '~> 1.1'
   s.add_dependency 'thor',           '~> 0.18.0'
 
   s.add_development_dependency 'coveralls'
   s.add_development_dependency 'rake'
-  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rspec', '~> 2.x'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'webmock'
 

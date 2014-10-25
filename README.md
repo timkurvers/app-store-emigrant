@@ -1,10 +1,10 @@
 # App Store Emigrant
 
-[![Gem Version](https://img.shields.io/gem/v/app-store-emigrant.svg)](https://rubygems.org/gems/app-store-emigrant)
-[![Build Status](https://img.shields.io/travis/timkurvers/app-store-emigrant.svg)](https://travis-ci.org/timkurvers/app-store-emigrant)
-[![Dependency Status](https://img.shields.io/gemnasium/timkurvers/app-store-emigrant.svg)](https://gemnasium.com/timkurvers/app-store-emigrant)
-[![Code Climate](https://img.shields.io/codeclimate/github/timkurvers/app-store-emigrant.svg)](https://codeclimate.com/github/timkurvers/app-store-emigrant)
-[![Coverage Status](https://img.shields.io/coveralls/timkurvers/app-store-emigrant.svg)](https://coveralls.io/r/timkurvers/app-store-emigrant)
+[![Gem Version](https://img.shields.io/gem/v/app-store-emigrant.svg?style=flat)](https://rubygems.org/gems/app-store-emigrant)
+[![Build Status](https://img.shields.io/travis/timkurvers/app-store-emigrant.svg?style=flat)](https://travis-ci.org/timkurvers/app-store-emigrant)
+[![Dependency Status](https://img.shields.io/gemnasium/timkurvers/app-store-emigrant.svg?style=flat)](https://gemnasium.com/timkurvers/app-store-emigrant)
+[![Code Climate](https://img.shields.io/codeclimate/github/timkurvers/app-store-emigrant.svg?style=flat)](https://codeclimate.com/github/timkurvers/app-store-emigrant)
+[![Coverage Status](https://img.shields.io/coveralls/timkurvers/app-store-emigrant.svg?style=flat)](https://coveralls.io/r/timkurvers/app-store-emigrant)
 
 App Store Emigrant is a Ruby gem that will manually attempt to verify whether any of your local mobile applications are out of date, which iTunes will refuse to do automatically once you have moved countries.
 
