@@ -27,13 +27,13 @@ Gem::Specification.new do |s|
   s.add_dependency 'rainbow',        '~> 1.1'
   s.add_dependency 'thor',           '~> 0.18.0'
 
-  s.add_development_dependency 'coveralls'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec', '~> 2.x'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'webmock'
 
   if RUBY_VERSION >= '1.9.3'
+    s.add_development_dependency 'coveralls'
     s.add_development_dependency 'guard'
     s.add_development_dependency 'guard-rspec'
     s.add_development_dependency 'listen'
