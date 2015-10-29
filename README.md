@@ -18,7 +18,6 @@ Licensed under the **MIT** license, see LICENSE for more information.
 the issues noted below. This effectively marks App Store Emigrant as redundant,
 but it will continue to be maintained, for now.**
 
-
 ## Background
 
 For more information on the issues faced when moving countries with regards to
