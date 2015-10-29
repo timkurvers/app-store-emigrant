@@ -22,7 +22,8 @@ but it will continue to be maintained, for now.**
 ## Background
 
 For more information on the issues faced when moving countries with regards to
-Apple's ecosystem please see [these] [discussions].
+Apple's ecosystem please see [these](https://discussions.apple.com/thread/2443094)
+[discussions](https://discussions.apple.com/message/16273593).
 
 **TL;DR**: For reasons unknown to mankind, Apple has made it rather complicated
 to update applications bought in different stores, particularly after emigrating.
