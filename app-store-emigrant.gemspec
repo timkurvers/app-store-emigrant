@@ -32,7 +32,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'webmock'
 
   if RUBY_VERSION >= '1.9.3'
-    s.add_development_dependency 'coveralls'
     s.add_development_dependency 'guard'
     s.add_development_dependency 'guard-rspec'
     s.add_development_dependency 'listen'
