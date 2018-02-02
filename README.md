@@ -9,7 +9,7 @@ App Store Emigrant is a Ruby gem that will manually attempt to verify whether
 any of your local mobile applications are out of date, which iTunes will refuse
 to do automatically once you have moved countries.
 
-**Supported Ruby versions: 1.8.7 or higher**
+**Supported Ruby versions: 1.9.2 or higher**
 
 Licensed under the [**MIT** license](LICENSE.md).
 
