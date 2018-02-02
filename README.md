@@ -11,7 +11,7 @@ to do automatically once you have moved countries.
 
 **Supported Ruby versions: 1.8.7 or higher**
 
-Licensed under the **MIT** license, see LICENSE for more information.
+Licensed under the [**MIT** license](LICENSE.md).
 
 **Redundancy notice: Apple has since released a new iTunes version that remedies
 the issues noted below. This effectively marks App Store Emigrant as redundant,
